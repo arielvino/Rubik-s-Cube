@@ -1,0 +1,23 @@
+﻿<Window x:Class="Rubik_s_Cube.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Rubik_s_Cube"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <DockPanel Background="Gray">
+        <StackPanel Orientation="Vertical" DockPanel.Dock="Left" Background="DarkGray">
+            <Button Content="Rotate" Click="RotateView_Button" Margin="5"/>
+            <Button Content="New" Click="CreateNewCube_Button" Margin="5"/>
+            <Button Content="Shuffle" Click="ShuffleCube_Button" Margin="5"/>
+            <Button Content="Rotate Random Face" Click="RotateRandom_Button" Margin="5"/>
+
+        </StackPanel>
+        <Viewport3D Name="mainViewport">
+            <Viewport3D.Camera>
+                <PerspectiveCamera x:Name="camera" Position="-7.5,15,15" LookDirection="0.5,-1,-1" UpDirection="0,1,0" />
+            </Viewport3D.Camera>
+        </Viewport3D>
+    </DockPanel>
+</Window>
