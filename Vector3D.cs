@@ -20,6 +20,16 @@ namespace Rubik_s_Cube
             Z = z;
         }
 
+        public static Vector3D operator+(Vector3D current, Vector3D other)
+        {
+            return new(current.X + other.X, current.Y + other.Y, current.Z + other.Z);
+        }
+
+        public static Vector3D operator*(Vector3D vector, float num)
+        {
+            return new(vector.X * num, vector.Y * num, vector.Z * num);
+        }
+
         public readonly Vector2D To2D(Axis ignoredAxis)
         {
             if(ignoredAxis == Axis.X)

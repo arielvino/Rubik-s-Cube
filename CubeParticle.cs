@@ -15,19 +15,11 @@ namespace Rubik_s_Cube
         {
             get;
         }
-        private Vector3D location;
 
         public Vector3D Location
         {
-            get {
-                return location;
-
-            }
-            set
-            {
-                //todo and to think
-            }
-        
+            get;
+            set;
         }
 
         public Orientation Orientation

@@ -126,7 +126,9 @@ namespace Rubik_s_Cube
 
         private static Color DetermineParticleFaceColor(CubeParticle particle, Side face, int cubeSize)//determine color Todo!!!!!!!!!!!!!!!!!
         {
-            if(face == particle.Orientation.Y)
+            Side internalSide = particle.Orientation.GetInternalSide(face);
+
+            if(internalSide == Side.Top)
             {
                 if(particle.Origin.Y == cubeSize - 1)
                 {
@@ -137,7 +139,7 @@ namespace Rubik_s_Cube
                     return Colors.Black;
                 }
             }
-            if (face == Utils3D.GetOposition(particle.Orientation.Y))
+            if (internalSide == Side.Bottom)
             {
                 if (particle.Origin.Y == 0)
                 {
@@ -148,7 +150,7 @@ namespace Rubik_s_Cube
                     return Colors.Black;
                 }
             }
-            if (face == particle.Orientation.X)
+            if (internalSide == Side.Right)
             {
                 if (particle.Origin.X == cubeSize - 1)
                 {
@@ -159,7 +161,7 @@ namespace Rubik_s_Cube
                     return Colors.Black;
                 }
             }
-            if (face == Utils3D.GetOposition(particle.Orientation.X))
+            if (internalSide == Side.Left)
             {
                 if (particle.Origin.X == 0)
                 {
@@ -170,7 +172,7 @@ namespace Rubik_s_Cube
                     return Colors.Black;
                 }
             }
-            if (face == particle.Orientation.Z)
+            if (internalSide == Side.Front)
             {
                 if (particle.Origin.Z == cubeSize - 1)
                 {
@@ -181,7 +183,7 @@ namespace Rubik_s_Cube
                     return Colors.Black;
                 }
             }
-            if (face == Utils3D.GetOposition(particle.Orientation.Z))
+            if (internalSide == Side.Back)
             {
                 if (particle.Origin.Z == 0)
                 {

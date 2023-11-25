@@ -55,5 +55,34 @@ namespace Rubik_s_Cube
             }
             throw new("An error occured.");
         }
+
+        public Side GetInternalSide(Side externalSide)
+        {
+            if(externalSide == X)
+            {
+                return Side.Right;
+            }
+            if(externalSide == Utils3D.GetOposition(X))
+            {
+                return Side.Left;
+            }
+            if(externalSide == Y)
+            {
+                return Side.Top;
+            }
+            if(externalSide == Utils3D.GetOposition(Y))
+            {
+                return Side.Bottom;
+            }
+            if(externalSide == Z)
+            {
+                return Side.Front;
+            }
+            if (externalSide == Utils3D.GetOposition(Z))
+            {
+                return Side.Back;
+            }
+            throw new("No such side.");
+        }
     }
 }

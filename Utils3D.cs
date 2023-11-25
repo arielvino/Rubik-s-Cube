@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,9 +12,9 @@ namespace Rubik_s_Cube
         public static Vector3D Up { get; } = new(0, 1, 0);
         public static Vector3D Down { get; } = new(0, -1, 0);
         public static Vector3D Left { get; } = new(-1, 0, 0);
-        public static Vector3D Right { get; } = new(-1, 0, 0);
-        public static Vector3D Back { get; } = new(0, 0, 1);
-        public static Vector3D Front { get; } = new(0, 0, -1);
+        public static Vector3D Right { get; } = new(1, 0, 0);
+        public static Vector3D Back { get; } = new(0, 0, -1);
+        public static Vector3D Front { get; } = new(0, 0, 1);
 
         public static Vector3D ToVector3D(Side side)
         {
@@ -88,32 +89,6 @@ namespace Rubik_s_Cube
                 _ => throw new("No such Side."),
             };
         }
-        
-        public static bool IsHigherIndeed(Axis higher, Axis lower)
-        {
-            if(higher == lower)
-            {
-                throw new("The axes are identical.");
-            }
 
-            //find their indexes in the array, and compare them:
-            Axis[] axes = { Axis.X, Axis.Y, Axis.Z };
-            
-            int h = -1, l = -1;
-
-            for (int i = 0; i < axes.Length; i++)
-            {
-                if (axes[i] == higher)
-                {
-                    h = i;
-                }
-                if (axes[i] == lower)
-                {
-                    l = i;
-                }
-            }
-
-            return h > l;
-        }
     }
 }

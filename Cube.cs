@@ -68,6 +68,7 @@ namespace Rubik_s_Cube.CubeModel
                 {
                     Vector3D newLocation = new Vector2D(x, y).To3D(axis, layer);
                     Particles[(int)newLocation.X, (int)newLocation.Y, (int)newLocation.Z] = face[x, y];
+                    face[x, y].Location = newLocation;
                 }
             }
         }
@@ -76,6 +77,7 @@ namespace Rubik_s_Cube.CubeModel
         {
             Shuffle((int)Math.Pow(Size, 3));
         }
+
         public void Shuffle(int iterations)
         {
             for (int i = 0; i < iterations; i++)
@@ -84,7 +86,35 @@ namespace Rubik_s_Cube.CubeModel
             }
         }
 
-        public void RotateRandomally()
+        public void RotateFace(Side face, bool clockwise, int layer)
+        {
+            Axis axis = Utils3D.GetAxis(face);
+            switch (face)
+            {
+                case Side.Top:
+                    RotateFace(axis, Size - 1 - layer, clockwise);
+                    break;
+                case Side.Bottom:
+                    RotateFace(axis, layer, !clockwise);
+                    break;
+                case Side.Left:
+                    RotateFace(axis, layer, clockwise);
+                    break;
+                case Side.Right:
+                    RotateFace(axis, Size - 1 - layer, !clockwise);
+                    break;
+                case Side.Front:
+                    RotateFace(axis, Size - 1 - layer, !clockwise);
+                    break;
+                case Side.Back:
+                    RotateFace(axis, layer, clockwise);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void RotateRandomally()
         {
             bool toHigherAxis = new Random().Next(2) % 2 == 0;
             int layer = new Random().Next(Size);
@@ -118,7 +148,6 @@ namespace Rubik_s_Cube.CubeModel
                 _ => throw new("No such axis."),
             };
         }
-
         /// <summary>
         /// This method tell you which direction will you face after rotation, depending on the current direction you are facing, the axis being rotated and the rotation's direction.
         /// </summary>

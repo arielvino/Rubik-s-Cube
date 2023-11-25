@@ -8,16 +8,31 @@
         Title="MainWindow" Height="450" Width="800">
     <DockPanel Background="Gray">
         <StackPanel Orientation="Vertical" DockPanel.Dock="Left" Background="DarkGray">
-            <Button Content="Rotate" Click="RotateView_Button" Margin="5"/>
             <Button Content="New" Click="CreateNewCube_Button" Margin="5"/>
             <Button Content="Shuffle" Click="ShuffleCube_Button" Margin="5"/>
-            <Button Content="Rotate Random Face" Click="RotateRandom_Button" Margin="5"/>
-
         </StackPanel>
-        <Viewport3D Name="mainViewport">
-            <Viewport3D.Camera>
-                <PerspectiveCamera x:Name="camera" Position="-7.5,15,15" LookDirection="0.5,-1,-1" UpDirection="0,1,0" />
-            </Viewport3D.Camera>
-        </Viewport3D>
+        <TextBox DockPanel.Dock="Bottom" MinLines="1" MaxLines="1" x:Name="terminal" TextAlignment="Left" PreviewKeyDown="terminal_PreviewKeyDown" />
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Viewport3D Name="mainViewport" Grid.Row="1" Grid.Column="1">
+                <Viewport3D.Camera>
+                    <PerspectiveCamera x:Name="camera" Position="-7.5,15,15" LookDirection="0.5,-1,-1" UpDirection="0,1,0" />
+                </Viewport3D.Camera>
+            </Viewport3D>
+            <Button Content="Up" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1" Click="RotateButton_Click" x:Name="upButton" />
+            <Button Content="Down" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" Click="RotateButton_Click" x:Name="downButton" />
+            <Button Content="Left" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Click="RotateButton_Click" x:Name="leftButton" />
+            <Button Content="Right" VerticalAlignment="Center" Grid.Row="1" Grid.Column="2" Click="RotateButton_Click" x:Name="rightButton" />
+
+        </Grid>
     </DockPanel>
 </Window>
