@@ -257,17 +257,6 @@ namespace Rubik_s_Cube
              */
             charIndex++;
 
-            //parse direction - optional:
-            bool clockwise = true;
-            if (command.Length > charIndex)
-            {
-                if (command.Substring(charIndex, 1) == "'")
-                {
-                    clockwise = false;
-                    charIndex++;
-                }
-            }
-
             //parse layer:
             int numOfDigits = 0;//Warning: work only for one-digit size!!!!!
             for (int i = charIndex; i<command.Length; i++)
@@ -292,6 +281,16 @@ namespace Rubik_s_Cube
             }
             charIndex += numOfDigits;
 
+            //parse direction - optional:
+            bool clockwise = true;
+            if (command.Length > charIndex)
+            {
+                if (command.Substring(charIndex, 1) == "'")
+                {
+                    clockwise = false;
+                    charIndex++;
+                }
+            }
 
             //parse repeat - optional:
             int repeat = 1;
@@ -331,6 +330,39 @@ namespace Rubik_s_Cube
             {
                 RotateView(Side.Right);
             }
+        }
+
+        private void Guide_Click(object sender, RoutedEventArgs e)
+        {
+            String message = "Here is how it's work:" +
+                "\r\n" +
+                "\r\n" +
+                "In order to rotate a face of the cube, you have to type commands in the terminal-line at the button of the window." +
+                "\r\r" +
+                "You can write a sequence of commands, separated by one or more empty spaces. The command(s) will be evaluated when you hit Enter." +
+                "\r\n" +
+                "\r\n" +
+                "The format of the commands is as follow:" +
+                "\r\n" +
+                "1) The first letter is representing the face that you want to rotate:" +
+                "\r\n" +
+                "\"u\" for the upper face, \"d\" for the downside, \"l\" for left, \"r\" for right, \"f\" for the front, and \"b\" for the back. You can use either uppercase or lowercase." +
+                "\r\n" +
+                "2) Determine which layer to rotate. If you want to rotate the most right layer of the cube, you can just type \"r\". But if you want to rotate the second-right layer you have to write \"r2\". Similarly, you can write \"u3\" in order to rotate the third-from-the-top layer of the cube." +
+                "\r\n" +
+                "It works the same for all sides and layers." +
+                "\r\n" +
+                "3) The default direction of the rotatetion is clockwise. If you want to rotate counterclockwise you need to add an ' after you have specified the layer." +
+                "\r\n" +
+                "The direction is determined by the face you declare. For example, if your cube is the size of 3, the command r3 and the command l1' are doing the exact same action." +
+                "\r\n" +
+                "4) If you want to rotate a face twice, you can add \"*\" at the end of the command. For example: \"f2*\" is the same as \"f2 f2\"." +
+                "\r\n" +
+                "\r\n" +
+                "In order to move the whole cube around and being able to see it from different angles you can use the ugly and absolutly temporary buttons at the outline, or you can use the keyboard shortkey Shift + w/a/s/d for the directions: up, left, down, right - in that order." +
+                "\r\n" +
+                "Notice: when you press at the button or shortkey \"up\" you are the one who move up, not the cube, meaning you can now look at the previously upper-side of the cube instead of the front side. The same is true for the other directions.";
+            MessageBox.Show(message);
         }
     }
 

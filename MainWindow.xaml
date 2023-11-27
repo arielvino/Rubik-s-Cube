@@ -10,6 +10,7 @@
         <StackPanel Orientation="Vertical" DockPanel.Dock="Left" Background="DarkGray">
             <Button Content="New" Click="CreateNewCube_Button" Margin="5"/>
             <Button Content="Shuffle" Click="ShuffleCube_Button" Margin="5"/>
+            <Button Content="Guide" Click="Guide_Click" Margin="5" />
         </StackPanel>
         <TextBox DockPanel.Dock="Bottom" MinLines="1" MaxLines="1" x:Name="terminal" TextAlignment="Left" PreviewKeyDown="terminal_PreviewKeyDown" />
         <Grid>
